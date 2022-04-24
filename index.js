@@ -1,7 +1,3 @@
-// responses for the player
-const negativeResponses = [`Close one! nt`, `Are you gonna keep losing or what?`, `Come on dude don't disappoint us`, `Last chance, you'd better win!`, `Bruh you're throwing this game`];
-const positiveResponses = [`Good start!`, `Another win nice!`, `One more win remaining, Keep it up!`, `Sheesh you are too good`];
-
 // create all elements for the DOM
 const mainContainer = document.createElement('div');
 const result = document.createElement('h1');
@@ -39,6 +35,10 @@ paperBtn.textContent = `Paper`;
 scissorsBtn.textContent = `Scissors`;
 clearBtn.textContent = `Clear`;
 
+// initialize score
+let playerScore = 0;
+let computerScore = 0;
+
 // add buttons to the DOM, assign them an event listener and a type
 let buttons = [rockBtn, paperBtn, scissorsBtn];
 buttons.forEach((button) => button.setAttribute('type', 'button'));
@@ -46,64 +46,60 @@ buttons.forEach((button) => subContainer.appendChild(button));
 buttons.forEach((button) => button.addEventListener('click', () => {
     playRound(button.getAttribute('class'));
 }));
+
 clearBtn.setAttribute('type', 'reset');
-clearBtn.addEventListener('click', () => {
-    playerScore = 0;
-    computerScore = 0;
-    result.textContent = `Try your luck against randomness`;
-    displayScore(0, 0);
-})
+clearBtn.addEventListener('click', restartGame);
 
-// initialize score
-let playerScore = 0;
-let computerScore = 0;
-
-// display & update the score
-function displayScore(playerScore, computerScore) {
-    score.textContent = `Humanity ` + playerScore + ' : ' + computerScore + ` Computer`;
-}
+// display initial score
 displayScore(playerScore, computerScore);
 
 // play one round of rock-paper-scissors
-function playRound(playerSelection) {
-    let computerSelection = computerPlay();
-    if (playerScore === 5 || computerScore === 5) {
-        return result.textContent = `too ez for you :D`;
-    }
-    
+function playRound(playerSelection, computerSelection = computerPlay()) {
+    if (playerScore === 5) return result.textContent = "Game Over! You won";
+    if (computerScore === 5) return result.textContent = "Game Over! You lost";
+
     if (playerSelection === computerSelection) return result.textContent = 'Phew,a tie!';
     
     if (playerSelection === options[0] && computerSelection === options[1]) {
         displayScore(playerScore, ++computerScore);
-        return result.textContent = negativeResponses[i];
+        return result.textContent = "you lost, rock < paper";
     }
     
     if (playerSelection === options[0] && computerSelection === options[2]) {
         displayScore(++playerScore, computerScore);
-        return result.textContent = positiveResponses[j];
+        return result.textContent = "You won, rock > scissors";
     }
     
     if (playerSelection === options[1] && computerSelection === options[0]) {
         displayScore(++playerScore, computerScore);
-        return result.textContent = positiveResponses[j];
+        return result.textContent = "You won, paper > rock";
     }
     
     if (playerSelection === options[1] && computerSelection === options[2]) {
         displayScore(playerScore, ++computerScore);
-        return result.textContent = negativeResponses[i];
+        return result.textContent = "You lost, paper < scissors";
     }
     
     if (playerSelection === options[2] && computerSelection === options[0]) {
         displayScore(playerScore, ++computerScore);
-        return result.textContent = negativeResponses[i];
+        return result.textContent = "You lost, scissors < rock";
     }
     
     if (playerSelection === options[2] && computerSelection === options[1]) {
         displayScore(++playerScore, computerScore);
-        return result.textContent = positiveResponses[j];
+        return result.textContent = "You won, scissors > paper";
     }
 }
 
-function restartGame() {
+// display the score
+function displayScore(playerScore, computerScore) {
+    score.textContent = `You ` + playerScore + ' : ' + computerScore + ` Computer`;
+}
 
+// restart game
+function restartGame() {
+    playerScore = 0;
+    computerScore = 0;
+    result.textContent = `Try your luck against randomness`;
+    displayScore(0, 0);
 }
