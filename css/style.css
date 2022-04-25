@@ -21,9 +21,18 @@ body {
     min-height: 100vh;
 }
 
-.score, .result {
-    width: 80%;
-    max-width: 300px;
+.result {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.score, h1 {
+    width: 95%;
+    max-width: 500px;
     font-weight: 500;
     font-size: 1rem;
     letter-spacing: 0.08rem;
@@ -35,8 +44,22 @@ body {
     margin-bottom: 2rem;
 }
 
-.result {
+h1 {
     margin-bottom: 1rem;
+}
+
+.plays {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    max-width: 400px;
+}
+
+.icon-rock, .icon-paper, .icon-scissors {
+    color: #21E6C1;
+    font-size: 2rem;
 }
 
 .sub-container {

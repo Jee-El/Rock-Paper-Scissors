@@ -1,6 +1,12 @@
 // create all elements for the DOM
 const mainContainer = document.createElement('div');
-const result = document.createElement('h1');
+const result = document.createElement('div');
+const title = document.createElement('h1');
+const plays = document.createElement('div');
+const iconRock = document.createElement('div');
+const iconPaper = document.createElement('div');
+const iconScissors = document.createElement('div');
+const icons = [iconRock, iconPaper, iconScissors];
 const score = document.createElement('h2');
 const subContainer = document.createElement('div');
 const rockBtn = document.createElement('button');
@@ -10,30 +16,37 @@ const clearBtn = document.createElement('button');
 const options = ["rock", "paper", "scissors"];
 let computerPlay = () => options[Math.floor(Math.random() * 3)];
 
+// add textual content to some elements
+title.textContent = `Try your luck against randomness`;
+score.textContent = `Humanity 0 : 0 Computer`;
+rockBtn.textContent = `Rock`;
+paperBtn.textContent = `Paper`;
+scissorsBtn.textContent = `Scissors`;
+clearBtn.textContent = `Clear`;
+
 // place some elements into the DOM
 document.body.appendChild(mainContainer);
 mainContainer.appendChild(subContainer);
 mainContainer.insertBefore(result, subContainer);
 mainContainer.insertBefore(score, subContainer);
 mainContainer.appendChild(clearBtn);
+result.appendChild(title);
+result.appendChild(plays);
+icons.forEach((icon) => plays.appendChild(icon));
 
 // add css classes for all elements
 mainContainer.classList.add('main-container');
 result.classList.add('result');
+plays.classList.add('plays');
+iconRock.classList.add('icon-rock');
+iconPaper.classList.add('icon-paper');
+iconScissors.classList.add('icon-scissors');
 score.classList.add('score');
 subContainer.classList.add('sub-container');
 rockBtn.classList.add('rock');
 paperBtn.classList.add('paper');
 scissorsBtn.classList.add('scissors');
 clearBtn.classList.add('clear');
-
-// add textual content to some elements
-result.textContent = `Try your luck against randomness`;
-score.textContent = `Humanity 0 : 0 Computer`;
-rockBtn.textContent = `Rock`;
-paperBtn.textContent = `Paper`;
-scissorsBtn.textContent = `Scissors`;
-clearBtn.textContent = `Clear`;
 
 // initialize score
 let playerScore = 0;
@@ -58,36 +71,36 @@ displayScore(playerScore, computerScore);
 
 // play one round of rock-paper-scissors
 function playRound(playerSelection, computerSelection = computerPlay()) {
-    if (playerSelection === computerSelection) return result.textContent = 'Phew,a tie!';
+    if (playerSelection === computerSelection) return title.textContent = 'Phew,a tie!';
     
     if (playerSelection === options[0] && computerSelection === options[1]) {
         displayScore(playerScore, ++computerScore);
-        return endGame() || (result.textContent = "you lost, rock < paper");
+        return endGame() || (title.textContent = "you lost, rock < paper");
     }
     
     if (playerSelection === options[0] && computerSelection === options[2]) {
         displayScore(++playerScore, computerScore);
-        return endGame() || (result.textContent = "You won, rock > scissors");
+        return endGame() || (title.textContent = "You won, rock > scissors");
     }
     
     if (playerSelection === options[1] && computerSelection === options[0]) {
         displayScore(++playerScore, computerScore);
-        return endGame() || (result.textContent = "You won, paper > rock");
+        return endGame() || (title.textContent = "You won, paper > rock");
     }
     
     if (playerSelection === options[1] && computerSelection === options[2]) {
         displayScore(playerScore, ++computerScore);
-        return endGame() || (result.textContent = "You lost, paper < scissors");
+        return endGame() || (title.textContent = "You lost, paper < scissors");
     }
     
     if (playerSelection === options[2] && computerSelection === options[0]) {
         displayScore(playerScore, ++computerScore);
-        return endGame() || (result.textContent = "You lost, scissors < rock");
+        return endGame() || (title.textContent = "You lost, scissors < rock");
     }
     
     if (playerSelection === options[2] && computerSelection === options[1]) {
         displayScore(++playerScore, computerScore);
-        return endGame() || (result.textContent = "You won, scissors > paper");
+        return endGame() || (title.textContent = "You won, scissors > paper");
     }
 }
 
@@ -100,11 +113,11 @@ function displayScore(playerScore, computerScore) {
 function endGame() {
     if (playerScore === 5) {
         buttons.forEach((button) => button.removeEventListener('click', getPlayerSelection));
-        return result.textContent = "Game Over: You won!";
+        return title.textContent = "Game Over: You won!";
     }
     if (computerScore === 5) {
         buttons.forEach((button) => button.removeEventListener('click', getPlayerSelection));
-        return result.textContent = "Game Over: You lost!";
+        return title.textContent = "Game Over: You lost!";
     }
 }
 
@@ -112,6 +125,7 @@ function endGame() {
 function restartGame() {
     playerScore = 0;
     computerScore = 0;
-    result.textContent = `Try your luck against randomness`;
+    title.textContent = `Try your luck against randomness`;
     displayScore(0, 0);
+    buttons.forEach((button) => button.addEventListener('click', getPlayerSelection));
 }
