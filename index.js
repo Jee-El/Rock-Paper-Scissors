@@ -2,11 +2,17 @@
 const mainContainer = document.createElement('div');
 const result = document.createElement('div');
 const title = document.createElement('h1');
-const plays = document.createElement('div');
-const iconRock = document.createElement('div');
-const iconPaper = document.createElement('div');
-const iconScissors = document.createElement('div');
-const icons = [iconRock, iconPaper, iconScissors];
+const totalPlays = document.createElement('div');
+const playsForPlayer = document.createElement('div');
+const iconRockPlayer = document.createElement('div');
+const iconPaperPlayer = document.createElement('div');
+const iconScissorsPlayer = document.createElement('div');
+const playsForComputer = document.createElement('div');
+const iconRockComputer = document.createElement('div');
+const iconPaperComputer = document.createElement('div');
+const iconScissorsComputer = document.createElement('div');
+const iconsPlayer = [iconRockPlayer, iconPaperPlayer, iconScissorsPlayer];
+const iconsComputer = [iconRockComputer, iconPaperComputer, iconScissorsComputer];
 const score = document.createElement('h2');
 const subContainer = document.createElement('div');
 const rockBtn = document.createElement('button');
@@ -31,16 +37,27 @@ mainContainer.insertBefore(result, subContainer);
 mainContainer.insertBefore(score, subContainer);
 mainContainer.appendChild(clearBtn);
 result.appendChild(title);
-result.appendChild(plays);
-icons.forEach((icon) => plays.appendChild(icon));
+result.appendChild(totalPlays);
+totalPlays.appendChild(playsForPlayer);
+totalPlays.appendChild(playsForComputer);
+iconsPlayer.forEach((icon) => playsForPlayer.appendChild(icon));
+iconsComputer.forEach((icon) => playsForComputer.appendChild(icon));
 
 // add css classes for all elements
 mainContainer.classList.add('main-container');
 result.classList.add('result');
-plays.classList.add('plays');
-iconRock.classList.add('icon-rock');
-iconPaper.classList.add('icon-paper');
-iconScissors.classList.add('icon-scissors');
+totalPlays.classList.add('total-plays');
+playsForPlayer.classList.add('plays', 'player');
+playsForComputer.classList.add('plays', 'computer');
+
+iconRockPlayer.classList.add('icon-rock');
+iconPaperPlayer.classList.add('icon-paper');
+iconScissorsPlayer.classList.add('icon-scissors');
+
+iconRockComputer.classList.add('icon-rock');
+iconPaperComputer.classList.add('icon-paper');
+iconScissorsComputer.classList.add('icon-scissors');
+
 score.classList.add('score');
 subContainer.classList.add('sub-container');
 rockBtn.classList.add('rock');
@@ -71,36 +88,45 @@ displayScore(playerScore, computerScore);
 
 // play one round of rock-paper-scissors
 function playRound(playerSelection, computerSelection = computerPlay()) {
-    if (playerSelection === computerSelection) return title.textContent = 'Phew,a tie!';
+    if (playerSelection === computerSelection) {
+        title.textContent = 'Phew,a tie!';
+        console.log(playerSelection, computerSelection);
+    }
     
     if (playerSelection === options[0] && computerSelection === options[1]) {
         displayScore(playerScore, ++computerScore);
-        return endGame() || (title.textContent = "you lost, rock < paper");
+        title.textContent = "you lost, rock < paper";
+        return endGame();
     }
     
     if (playerSelection === options[0] && computerSelection === options[2]) {
         displayScore(++playerScore, computerScore);
-        return endGame() || (title.textContent = "You won, rock > scissors");
+        title.textContent = "You won, rock > scissors";
+        return endGame();
     }
     
     if (playerSelection === options[1] && computerSelection === options[0]) {
         displayScore(++playerScore, computerScore);
-        return endGame() || (title.textContent = "You won, paper > rock");
+        title.textContent = "You won, paper > rock";
+        return endGame()
     }
     
     if (playerSelection === options[1] && computerSelection === options[2]) {
         displayScore(playerScore, ++computerScore);
-        return endGame() || (title.textContent = "You lost, paper < scissors");
+        title.textContent = "You lost, paper < scissors";
+        return endGame()
     }
     
     if (playerSelection === options[2] && computerSelection === options[0]) {
         displayScore(playerScore, ++computerScore);
-        return endGame() || (title.textContent = "You lost, scissors < rock");
+        title.textContent = "You lost, scissors < rock";
+        return endGame();
     }
     
     if (playerSelection === options[2] && computerSelection === options[1]) {
         displayScore(++playerScore, computerScore);
-        return endGame() || (title.textContent = "You won, scissors > paper");
+        title.textContent = "You won, scissors > paper";
+        return endGame();
     }
 }
 
