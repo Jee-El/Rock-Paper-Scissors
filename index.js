@@ -80,7 +80,6 @@ buttons.forEach((button) => button.addEventListener('click', getPlayerSelection)
 clearBtn.setAttribute('type', 'reset');
 clearBtn.addEventListener('click', restartGame);
 
-
 // show the icons of the chosen plays
 function showPlaysIcons(player = 0, computer = 0) {
     iconsPlayer[player].style.display = "flex";
