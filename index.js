@@ -1,24 +1,30 @@
 // create all elements for the DOM
-const mainContainer = document.createElement('div');
-const result = document.createElement('div');
-const title = document.createElement('h1');
-const totalPlays = document.createElement('div');
-const playsForPlayer = document.createElement('div');
-const iconRockPlayer = document.createElement('div');
-const iconPaperPlayer = document.createElement('div');
-const iconScissorsPlayer = document.createElement('div');
-const playsForComputer = document.createElement('div');
-const iconRockComputer = document.createElement('div');
-const iconPaperComputer = document.createElement('div');
-const iconScissorsComputer = document.createElement('div');
+const body = document.querySelector('body');
+    const mainContainer = document.createElement('div');
+        const result = document.createElement('div');
+            const title = document.createElement('h1');
+            const totalPlays = document.createElement('div');
+                const playsForPlayer = document.createElement('div');
+                    const iconRockPlayer = document.createElement('div');
+                    const iconPaperPlayer = document.createElement('div');
+                    const iconScissorsPlayer = document.createElement('div');
+                const playsForComputer = document.createElement('div');
+                    const iconRockComputer = document.createElement('div');
+                    const iconPaperComputer = document.createElement('div');
+                    const iconScissorsComputer = document.createElement('div');
+        const score = document.createElement('h2');
+        const subContainer = document.createElement('div');
+            const rockBtn = document.createElement('button');
+            const paperBtn = document.createElement('button');
+            const scissorsBtn = document.createElement('button');
+            const clearBtn = document.createElement('button');
+
+const tieResponses = ["Phew, a tie!", 
+    "A tie, that was close!",
+    "You tied, better luck next round!"];
+
 const iconsPlayer = [iconRockPlayer, iconPaperPlayer, iconScissorsPlayer];
 const iconsComputer = [iconRockComputer, iconPaperComputer, iconScissorsComputer];
-const score = document.createElement('h2');
-const subContainer = document.createElement('div');
-const rockBtn = document.createElement('button');
-const paperBtn = document.createElement('button');
-const scissorsBtn = document.createElement('button');
-const clearBtn = document.createElement('button');
 const options = ["rock", "paper", "scissors"];
 let computerPlay = () => options[Math.floor(Math.random() * 3)];
 
@@ -29,12 +35,20 @@ paperBtn.textContent = `Paper`;
 scissorsBtn.textContent = `Scissors`;
 clearBtn.textContent = `Clear`;
 
+// style body and icons
+body.style.cssText = "background-color: #071E3D; min-height: 100vh; width: 100%";
+iconsPlayer.forEach((icon) => {
+    icon.style.cssText = "color: #21E6C1; font-size: 2rem";
+})
+iconsComputer.forEach((icon) => {
+    icon.style.cssText = "color: #21E6C1; font-size: 2rem";
+})
+
 // place some elements into the DOM
 document.body.appendChild(mainContainer);
 mainContainer.appendChild(subContainer);
 mainContainer.insertBefore(result, subContainer);
 mainContainer.insertBefore(score, subContainer);
-mainContainer.appendChild(clearBtn);
 result.appendChild(title);
 result.appendChild(totalPlays);
 totalPlays.appendChild(playsForPlayer);
@@ -72,15 +86,16 @@ clearBtn.classList.add('clear');
 // add buttons to the DOM, assign them an event listener and a type
 let buttons = [rockBtn, paperBtn, scissorsBtn];
 buttons.forEach((button) => button.setAttribute('type', 'button'));
+clearBtn.setAttribute('type', 'reset');
+
 buttons.forEach((button) => subContainer.appendChild(button));
+subContainer.appendChild(clearBtn);
 
 let getPlayerSelection = (e) => {
     playRound(e.target.getAttribute('class'));
 }
 
 buttons.forEach((button) => button.addEventListener('click', getPlayerSelection));
-
-clearBtn.setAttribute('type', 'reset');
 clearBtn.addEventListener('click', restartGame);
 
 // show the icons of the chosen plays
@@ -103,7 +118,7 @@ displayScore(playerScore, computerScore);
 // play one round of rock-paper-scissors
 function playRound(playerSelection, computerSelection = computerPlay()) {
     if (playerSelection === computerSelection) {
-        title.textContent = 'Phew,a tie!';
+        title.textContent = tieResponses[Math.floor(Math.random() * 3)];
         hideNonPlaysIcons();
         showPlaysIcons(options.indexOf(playerSelection), options.indexOf(computerSelection));
     }
@@ -139,7 +154,7 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
         displayScore(playerScore, ++computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(1, 2);
-        title.textContent = "You lost, Paper beats Scissors";
+        title.textContent = "You lost,  Scissors beat Paper";
         endGame();
         return;
     }
@@ -157,7 +172,7 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
         displayScore(++playerScore, computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(2, 1);
-        title.textContent = "You won, Scissors beats Paper";
+        title.textContent = "You won, Scissors beat Paper";
         endGame();
         return;
     }

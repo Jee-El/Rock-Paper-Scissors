@@ -8,11 +8,6 @@ html, body {
     font-family: Poppins, Helvetica, sans-serif;
 }
 
-body {
-    background-color: #071E3D;
-    width: 100%;
-}
-
 .main-container {
     align-items: center;
     display: flex;
@@ -46,30 +41,10 @@ h1 {
 
 .total-plays {
     width: 60%;
+    max-width: 190px;
     display: flex;
     flex-flow: row;
-    justify-content: center;
-}
-
-.plays {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    width: 80%;
-    max-width: 100px;
-}
-
-.plays.player {
-    align-items: flex-start;
-}
-
-.plays.computer {
-    align-items: flex-end;
-}
-
-.icon-rock, .icon-paper, .icon-scissors {
-    color: #21E6C1;
-    font-size: 2rem;
+    justify-content: space-between;
 }
 
 .sub-container {
@@ -89,7 +64,7 @@ button {
     background-color: #21E6C1;
     border: none;
     border-radius: 2px;
-    box-shadow: 0px 3.3px 2px #278EA5;
+    box-shadow: 0px 3.7px 2px #278EA5;
     color: #000;
     cursor: pointer;
     font-size: 0.85rem;
@@ -104,19 +79,8 @@ button.clear {
     background-color: transparent;
     border: 2px solid #21E6C1;
     color: #21E6C1;
-    margin-top: 2rem;
 }
 
 button:hover {
     box-shadow: 0px 0px 10px 0.5px #278EA5;
-}
-
-@media (min-width: 769px) {
-    .sub-container {
-        flex-direction: row;
-    }
-    .sub-container > button:not(:last-child) {
-        margin-bottom: 0;
-        margin-right: 2rem;
-    }
 }
