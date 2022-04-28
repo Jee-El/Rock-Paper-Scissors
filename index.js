@@ -39,7 +39,10 @@ result.appendChild(title);
 result.appendChild(totalPlays);
 totalPlays.appendChild(playsForPlayer);
 totalPlays.appendChild(playsForComputer);
-iconsPlayer.forEach((icon) => playsForPlayer.appendChild(icon));
+iconsPlayer.forEach((icon) => {
+    playsForPlayer.appendChild(icon);
+    icon.style.transform = "scaleX(-1)";
+});
 iconsComputer.forEach((icon) => playsForComputer.appendChild(icon));
 
 // add css classes for all elements
