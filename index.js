@@ -18,6 +18,9 @@ const body = document.querySelector('body');
             const paperBtn = document.createElement('button');
             const scissorsBtn = document.createElement('button');
             const clearBtn = document.createElement('button');
+    const footer = document.createElement('footer');
+        const footerText = document.createElement('h4');
+            const githubIcon = document.createElement('a');
 
 const tieResponses = ["Phew, a tie!", 
     "A tie, that was close!",
@@ -34,21 +37,27 @@ rockBtn.textContent = `Rock`;
 paperBtn.textContent = `Paper`;
 scissorsBtn.textContent = `Scissors`;
 clearBtn.textContent = `Clear`;
+footerText.textContent = `By Jee-El `;
+githubIcon.href = "https://github.com/Jee-El/Rock-Paper-Scissors";
 
 // style body and icons
-body.style.cssText = "background-color: #071E3D; min-height: 100vh; width: 100%";
+body.style.cssText = "position: relative; background-color: #071E3D; min-height: 100vh; width: 100%";
 iconsPlayer.forEach((icon) => {
     icon.style.cssText = "color: #21E6C1; font-size: 2rem";
 })
 iconsComputer.forEach((icon) => {
     icon.style.cssText = "color: #21E6C1; font-size: 2rem";
 })
+footer.style.cssText = "align-items: center; bottom: 0; display: flex; height: 45px; justify-content: center; position: absolute; width: 100%";
+footerText.style.cssText = "color: #21E6C1; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1rem; text-transform: capitalize";
+githubIcon.style.cssText = "color: #21E6C1; font-size: 0.9rem";
 
 // place some elements into the DOM
-document.body.appendChild(mainContainer);
+body.appendChild(mainContainer);
+mainContainer.appendChild(result);
+mainContainer.appendChild(score);
 mainContainer.appendChild(subContainer);
-mainContainer.insertBefore(result, subContainer);
-mainContainer.insertBefore(score, subContainer);
+mainContainer.appendChild(footer);
 result.appendChild(title);
 result.appendChild(totalPlays);
 totalPlays.appendChild(playsForPlayer);
@@ -58,6 +67,8 @@ iconsPlayer.forEach((icon) => {
     icon.style.transform = "scaleX(-1)";
 });
 iconsComputer.forEach((icon) => playsForComputer.appendChild(icon));
+footer.appendChild(footerText);
+footerText.appendChild(githubIcon);
 
 // add css classes for all elements
 mainContainer.classList.add('main-container');
@@ -65,6 +76,7 @@ result.classList.add('result');
 totalPlays.classList.add('total-plays');
 playsForPlayer.classList.add('plays', 'player');
 playsForComputer.classList.add('plays', 'computer');
+githubIcon.classList.add('icon-github');
 hideNonPlaysIcons();
 showPlaysIcons();
 
@@ -183,7 +195,7 @@ function displayScore(playerScore, computerScore) {
     score.textContent = playerScore + " : "+ computerScore;
 }
 
-// did the game end?
+// check if the game ended
 function endGame() {
     if (playerScore === 5 || computerScore === 5) {
         buttons.forEach((button) => button.removeEventListener('click', getPlayerSelection));
