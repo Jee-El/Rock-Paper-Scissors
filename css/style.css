@@ -84,3 +84,23 @@ button.clear {
 button:hover {
     box-shadow: 0px 0px 10px 0.5px #278EA5;
 }
+
+@media (orientation: landscape) and (max-width: 900px) {
+    body {
+        padding: 2rem;
+    }
+    .sub-container {
+        flex-flow: row wrap;
+        max-width: 391px;
+    }
+    .sub-container > button[type="button"] {
+        margin-bottom: 0;
+        margin-right: 2rem;
+    }
+    .sub-container > button.scissors {
+        margin-right: 0;
+    }
+    .sub-container > button[type="reset"] {
+        margin-top: 2rem;
+    }
+}
