@@ -19,8 +19,8 @@ const body = document.querySelector('body');
             const scissorsBtn = document.createElement('button');
             const clearBtn = document.createElement('button');
     const footer = document.createElement('footer');
-        const footerText = document.createElement('h4');
-            const githubIcon = document.createElement('a');
+        const footerText = document.createElement('a');
+            const githubIcon = document.createElement('i');
 
 const tieResponses = ["Phew, a tie!", 
     "A tie, that was close!",
@@ -31,6 +31,7 @@ const iconsComputer = [iconRockComputer, iconPaperComputer, iconScissorsComputer
 const options = ["rock", "paper", "scissors"];
 let computerPlay = () => options[Math.floor(Math.random() * 3)];
 
+
 // add textual content to some elements
 title.textContent = `You think you got a chance against randomness?`;
 rockBtn.textContent = `Rock`;
@@ -38,19 +39,22 @@ paperBtn.textContent = `Paper`;
 scissorsBtn.textContent = `Scissors`;
 clearBtn.textContent = `Clear`;
 footerText.textContent = `By Jee-El `;
-githubIcon.href = "https://github.com/Jee-El/Rock-Paper-Scissors";
+footerText.href = "https://github.com/Jee-El/Rock-Paper-Scissors";
 
 // style body and icons
 body.style.cssText = "position: relative; background-color: #071E3D; min-height: 100vh; width: 100%";
+
 iconsPlayer.forEach((icon) => {
     icon.style.cssText = "color: #21E6C1; font-size: 2rem";
 })
 iconsComputer.forEach((icon) => {
     icon.style.cssText = "color: #21E6C1; font-size: 2rem";
 })
+
 footer.style.cssText = "align-items: center; bottom: 0; display: flex; height: 45px; justify-content: center; position: absolute; width: 100%";
-footerText.style.cssText = "color: #21E6C1; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1rem; text-transform: capitalize";
+footerText.style.cssText = "color: #21E6C1; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1rem; text-decoration: none; text-transform: capitalize";
 githubIcon.style.cssText = "color: #21E6C1; font-size: 0.9rem";
+
 
 // place some elements into the DOM
 body.appendChild(mainContainer);
@@ -69,6 +73,7 @@ iconsPlayer.forEach((icon) => {
 iconsComputer.forEach((icon) => playsForComputer.appendChild(icon));
 footer.appendChild(footerText);
 footerText.appendChild(githubIcon);
+
 
 // add css classes for all elements
 mainContainer.classList.add('main-container');
@@ -95,6 +100,7 @@ paperBtn.classList.add('paper');
 scissorsBtn.classList.add('scissors');
 clearBtn.classList.add('clear');
 
+
 // add buttons to the DOM, assign them an event listener and a type
 let playButtons = [rockBtn, paperBtn, scissorsBtn];
 playButtons.forEach((playButton) => playButton.setAttribute('type', 'button'));
@@ -110,11 +116,13 @@ let getPlayerSelection = (e) => {
 playButton.forEach((playButton) => playButton.addEventListener('click', getPlayerSelection));
 clearBtn.addEventListener('click', restartGame);
 
+
 // show the icons of the chosen plays
 function showPlaysIcons(player = 0, computer = 0) {
     iconsPlayer[player].style.display = "flex";
     iconsComputer[computer].style.display = "flex";
 }
+
 
 // hide the rest of icons
 function hideNonPlaysIcons() {
@@ -122,10 +130,12 @@ function hideNonPlaysIcons() {
     iconsComputer.forEach((icon) => icon.style.display = "none");
 }
 
+
 // display initial score
 let playerScore = 0;
 let computerScore = 0;
 displayScore(playerScore, computerScore);
+
 
 // play one round of rock-paper-scissors
 function playRound(playerSelection, computerSelection = computerPlay()) {
@@ -190,6 +200,7 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
     }
 }
 
+
 // display the score
 function displayScore(playerScore, computerScore) {
     score.textContent = playerScore + " : "+ computerScore;
@@ -211,6 +222,7 @@ function endGame() {
         return;
     }
 }
+
 
 // restart game
 function restartGame() {
