@@ -13,7 +13,7 @@ const body = document.querySelector('body');
                     const iconPaperComputer = document.createElement('div');
                     const iconScissorsComputer = document.createElement('div');
         const score = document.createElement('h2');
-        const subContainer = document.createElement('div');
+        const buttons = document.createElement('div');
             const rockBtn = document.createElement('button');
             const paperBtn = document.createElement('button');
             const scissorsBtn = document.createElement('button');
@@ -56,7 +56,7 @@ githubIcon.style.cssText = "color: #21E6C1; font-size: 0.9rem";
 body.appendChild(mainContainer);
 mainContainer.appendChild(result);
 mainContainer.appendChild(score);
-mainContainer.appendChild(subContainer);
+mainContainer.appendChild(buttons);
 mainContainer.appendChild(footer);
 result.appendChild(title);
 result.appendChild(totalPlays);
@@ -89,25 +89,25 @@ iconPaperComputer.classList.add('icon-paper');
 iconScissorsComputer.classList.add('icon-scissors');
 
 score.classList.add('score');
-subContainer.classList.add('sub-container');
+buttons.classList.add('buttons');
 rockBtn.classList.add('rock');
 paperBtn.classList.add('paper');
 scissorsBtn.classList.add('scissors');
 clearBtn.classList.add('clear');
 
 // add buttons to the DOM, assign them an event listener and a type
-let buttons = [rockBtn, paperBtn, scissorsBtn];
-buttons.forEach((button) => button.setAttribute('type', 'button'));
+let playButtons = [rockBtn, paperBtn, scissorsBtn];
+playButtons.forEach((playButton) => playButton.setAttribute('type', 'button'));
 clearBtn.setAttribute('type', 'reset');
 
-buttons.forEach((button) => subContainer.appendChild(button));
-subContainer.appendChild(clearBtn);
+playButtons.forEach((playButton) => buttons.appendChild(playButton));
+buttons.appendChild(clearBtn);
 
 let getPlayerSelection = (e) => {
     playRound(e.target.getAttribute('class'));
 }
 
-buttons.forEach((button) => button.addEventListener('click', getPlayerSelection));
+playButton.forEach((playButton) => playButton.addEventListener('click', getPlayerSelection));
 clearBtn.addEventListener('click', restartGame);
 
 // show the icons of the chosen plays
@@ -198,7 +198,7 @@ function displayScore(playerScore, computerScore) {
 // check if the game ended
 function endGame() {
     if (playerScore === 5 || computerScore === 5) {
-        buttons.forEach((button) => button.removeEventListener('click', getPlayerSelection));
+        playButton.forEach((playButton) => playButton.removeEventListener('click', getPlayerSelection));
         title.style.borderRadius = "4px";
         title.style.boxShadow = "0px 0px 2px 0.5px #278EA5";
     }
@@ -221,5 +221,5 @@ function restartGame() {
     displayScore(0, 0);
     hideNonPlaysIcons();
     showPlaysIcons();
-    buttons.forEach((button) => button.addEventListener('click', getPlayerSelection));
+    playButton.forEach((playButton) => playButton.addEventListener('click', getPlayerSelection));
 }

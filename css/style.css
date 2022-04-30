@@ -48,14 +48,14 @@ h1 {
     width: 60%;
 }
 
-.sub-container {
+.buttons {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.sub-container > button:not(:last-child) {
+.buttons > button:not(:last-child) {
     margin-bottom: 2rem;
 }
 
@@ -90,18 +90,18 @@ button:hover {
     body {
         padding: 2rem;
     }
-    .sub-container {
+    .buttons {
         flex-flow: row wrap;
         max-width: 391px;
     }
-    .sub-container > button[type="button"] {
+    .buttons > button[type="button"] {
         margin-bottom: 0;
         margin-right: 2rem;
     }
-    .sub-container > button.scissors {
+    .buttons > button.scissors {
         margin-right: 0;
     }
-    .sub-container > button[type="reset"] {
+    .buttons > button[type="reset"] {
         margin-top: 2rem;
     }
 }
