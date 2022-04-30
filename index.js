@@ -23,10 +23,16 @@ const body = document.querySelector('body');
             const githubIcon = document.createElement('i');
 
 const tieResponses = ["Phew, a tie!", 
-    "A tie, good save!",
-    "You tied, lucky!"];
-const winResponses = ["Great!, You won", "Another win, nice one!", "Well done!", "Goodjob! One more win left"];
-const lossResponses = ["You lost, unlucky", "You lost but good try", "Another loss, close one", "You lost, last chance!"];
+                    "A tie, good save!",
+                    "You tied, lucky!"];
+const winResponses = ["Great!, You won",
+                    "Another win, nice one!",
+                    "Well done!",
+                    "Goodjob! One more win left"];
+const lossResponses = ["You lost, unlucky",
+                    "You lost but good try",
+                    "Another loss, close one",
+                    "You lost, last chance!"];
 
 const iconsPlayer = [iconRockPlayer, iconPaperPlayer, iconScissorsPlayer];
 const iconsComputer = [iconRockComputer, iconPaperComputer, iconScissorsComputer];
