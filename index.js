@@ -51,8 +51,8 @@ iconsComputer.forEach((icon) => {
     icon.style.cssText = "color: #21E6C1; font-size: 2rem";
 })
 
-footer.style.cssText = "align-items: center; bottom: 0; display: flex; height: 50px; justify-content: center; position: absolute; width: 100%";
-footerText.style.cssText = "color: #21E6C1; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1rem; text-decoration: none; text-transform: capitalize";
+footer.style.cssText = "align-items: center; bottom: 0; display: flex; height: 50px; justify-content: center; position: absolute; width: 100%; box-shadow: 0 -0.5px 3px #278EA5";
+footerText.style.cssText = "color: #21E6C1; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1rem; text-decoration: none; text-transform: capitalize";
 githubIcon.style.cssText = "color: #21E6C1; font-size: 0.9rem";
 
 

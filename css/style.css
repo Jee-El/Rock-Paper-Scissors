@@ -13,9 +13,9 @@ html, body {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    min-height: calc(100vh + 50px);
+    min-height: calc(100vh + 50.5px);
     padding-top: 2rem;
-    padding-bottom: calc(2rem + 50px);
+    padding-bottom: calc(2rem + 50.5px);
 }
 
 .result {
