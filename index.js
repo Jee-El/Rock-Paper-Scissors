@@ -23,8 +23,10 @@ const body = document.querySelector('body');
             const githubIcon = document.createElement('i');
 
 const tieResponses = ["Phew, a tie!", 
-    "A tie, that was close!",
-    "You tied, better luck next round!"];
+    "A tie, good save!",
+    "You tied, lucky!"];
+const winResponses = ["Great!, You won", "Another win, nice one!", "Well done!", "Goodjob! One more win left"];
+const lossResponses = ["You lost, unlucky", "You lost but good try", "Another loss, close one", "You lost, last chance!"];
 
 const iconsPlayer = [iconRockPlayer, iconPaperPlayer, iconScissorsPlayer];
 const iconsComputer = [iconRockComputer, iconPaperComputer, iconScissorsComputer];
@@ -43,6 +45,9 @@ footerText.href = "https://github.com/Jee-El/Rock-Paper-Scissors";
 
 // style body and icons
 body.style.cssText = "position: relative; background-color: #071E3D; min-height: 100vh; width: 100%";
+
+title.style.maxWidth = "350px";
+title.style.padding = "0.4rem 0.8rem";
 
 iconsPlayer.forEach((icon) => {
     icon.style.cssText = "color: #21E6C1; font-size: 2rem";
@@ -149,7 +154,7 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
         displayScore(playerScore, ++computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(0, 1);
-        title.textContent = "You lost, Paper beats Rock";
+        title.textContent = lossResponses[computerScore - 1];
         endGame();
         return;
     }
@@ -158,7 +163,7 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
         displayScore(++playerScore, computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(0, 2);
-        title.textContent = "You won, Rock beats Scissors";
+        title.textContent = winResponses[playerScore - 1];
         endGame();
         return;
     }
@@ -167,7 +172,7 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
         displayScore(++playerScore, computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(1, 0);
-        title.textContent = "You won, Paper beats Rock";
+        title.textContent = winResponses[playerScore - 1];
         endGame();
         return;
     }
@@ -176,7 +181,7 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
         displayScore(playerScore, ++computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(1, 2);
-        title.textContent = "You lost,  Scissors beat Paper";
+        title.textContent = lossResponses[computerScore - 1];
         endGame();
         return;
     }
@@ -185,7 +190,7 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
         displayScore(playerScore, ++computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(2, 0);
-        title.textContent = "You lost, Rock beats Scissors";
+        title.textContent = lossResponses[computerScore - 1];
         endGame();
         return;
     }
@@ -194,7 +199,7 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
         displayScore(++playerScore, computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(2, 1);
-        title.textContent = "You won, Scissors beat Paper";
+        title.textContent = winResponses[playerScore - 1];
         endGame();
         return;
     }
@@ -209,7 +214,7 @@ function displayScore(playerScore, computerScore) {
 // check if the game ended
 function endGame() {
     if (playerScore === 5 || computerScore === 5) {
-        playButton.forEach((playButton) => playButton.removeEventListener('click', getPlayerSelection));
+        playButtons.forEach((playButton) => playButton.removeEventListener('click', getPlayerSelection));
         title.style.borderRadius = "4px";
         title.style.boxShadow = "0px 0px 2px 0.5px #278EA5";
     }
@@ -233,5 +238,5 @@ function restartGame() {
     displayScore(0, 0);
     hideNonPlaysIcons();
     showPlaysIcons();
-    playButton.forEach((playButton) => playButton.addEventListener('click', getPlayerSelection));
+    playButtons.forEach((playButton) => playButton.addEventListener('click', getPlayerSelection));
 }
