@@ -33,11 +33,11 @@ let computerPlay = () => options[Math.floor(Math.random() * 3)];
 
 
 // add textual content to some elements
-title.textContent = `You think you got a chance against randomness?`;
+title.textContent = `You think you can win?`;
 rockBtn.textContent = `Rock`;
 paperBtn.textContent = `Paper`;
 scissorsBtn.textContent = `Scissors`;
-clearBtn.textContent = `Clear`;
+clearBtn.textContent = `Restart`;
 footerText.textContent = `By Jee-El `;
 footerText.href = "https://github.com/Jee-El/Rock-Paper-Scissors";
 
@@ -51,7 +51,7 @@ iconsComputer.forEach((icon) => {
     icon.style.cssText = "color: #21E6C1; font-size: 2rem";
 })
 
-footer.style.cssText = "align-items: center; bottom: 0; display: flex; height: 45px; justify-content: center; position: absolute; width: 100%";
+footer.style.cssText = "align-items: center; bottom: 0; display: flex; height: 50px; justify-content: center; position: absolute; width: 100%";
 footerText.style.cssText = "color: #21E6C1; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1rem; text-decoration: none; text-transform: capitalize";
 githubIcon.style.cssText = "color: #21E6C1; font-size: 0.9rem";
 
@@ -113,7 +113,7 @@ let getPlayerSelection = (e) => {
     playRound(e.target.getAttribute('class'));
 }
 
-playButton.forEach((playButton) => playButton.addEventListener('click', getPlayerSelection));
+playButtons.forEach((playButton) => playButton.addEventListener('click', getPlayerSelection));
 clearBtn.addEventListener('click', restartGame);
 
 
@@ -228,7 +228,7 @@ function endGame() {
 function restartGame() {
     playerScore = 0;
     computerScore = 0;
-    title.textContent = `You think you got a chance against randomness?`;
+    title.textContent = `You think you can win?`;
     title.style.boxShadow = "none";
     displayScore(0, 0);
     hideNonPlaysIcons();

@@ -13,7 +13,9 @@ html, body {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    min-height: 100vh;
+    min-height: calc(100vh + 50px);
+    padding-top: 2rem;
+    padding-bottom: calc(2rem + 50px);
 }
 
 .result {
@@ -86,9 +88,6 @@ button:hover {
 }
 
 @media (orientation: landscape) and (max-width: 900px) {
-    body {
-        padding: 2rem;
-    }
     .buttons {
         flex-flow: row wrap;
         max-width: 391px;
