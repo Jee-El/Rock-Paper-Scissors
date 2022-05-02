@@ -30,8 +30,8 @@ const winResponses = ["Great! You win",
                     "Well done!",
                     "Goodjob! One more win left"];
 const lossResponses = ["You lose, unlucky :(",
-                    "You lose. Good try though!",
-                    "Another loss, close one",
+                    "You lose. Good try, though",
+                    "Another loss, close one!",
                     "You lose, last chance!"];
 
 const iconsPlayer = [iconRockPlayer, iconPaperPlayer, iconScissorsPlayer];
