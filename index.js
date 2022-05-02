@@ -25,14 +25,14 @@ const body = document.querySelector('body');
 const tieResponses = ["Phew, a tie!", 
                     "A tie, good save!",
                     "You tied, lucky!"];
-const winResponses = ["Great!, You won",
+const winResponses = ["Great! You win",
                     "Another win, nice one!",
                     "Well done!",
                     "Goodjob! One more win left"];
-const lossResponses = ["You lost, unlucky",
-                    "You lost but good try",
+const lossResponses = ["You lose, unlucky :(",
+                    "You lose. Good try though!",
                     "Another loss, close one",
-                    "You lost, last chance!"];
+                    "You lose, last chance!"];
 
 const iconsPlayer = [iconRockPlayer, iconPaperPlayer, iconScissorsPlayer];
 const iconsComputer = [iconRockComputer, iconPaperComputer, iconScissorsComputer];
@@ -157,55 +157,55 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
     }
     
     if (playerSelection === options[0] && computerSelection === options[1]) {
+        title.textContent = lossResponses[computerScore];
         displayScore(playerScore, ++computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(0, 1);
-        title.textContent = lossResponses[computerScore - 1];
         endGame();
         return;
     }
     
     if (playerSelection === options[0] && computerSelection === options[2]) {
+        title.textContent = winResponses[playerScore];
         displayScore(++playerScore, computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(0, 2);
-        title.textContent = winResponses[playerScore - 1];
         endGame();
         return;
     }
     
     if (playerSelection === options[1] && computerSelection === options[0]) {
+        title.textContent = winResponses[playerScore];
         displayScore(++playerScore, computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(1, 0);
-        title.textContent = winResponses[playerScore - 1];
         endGame();
         return;
     }
     
     if (playerSelection === options[1] && computerSelection === options[2]) {
+        title.textContent = lossResponses[computerScore];
         displayScore(playerScore, ++computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(1, 2);
-        title.textContent = lossResponses[computerScore - 1];
         endGame();
         return;
     }
     
     if (playerSelection === options[2] && computerSelection === options[0]) {
+        title.textContent = lossResponses[computerScore];
         displayScore(playerScore, ++computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(2, 0);
-        title.textContent = lossResponses[computerScore - 1];
         endGame();
         return;
     }
     
     if (playerSelection === options[2] && computerSelection === options[1]) {
+        title.textContent = winResponses[playerScore];
         displayScore(++playerScore, computerScore);
         hideNonPlaysIcons();
         showPlaysIcons(2, 1);
-        title.textContent = winResponses[playerScore - 1];
         endGame();
         return;
     }
