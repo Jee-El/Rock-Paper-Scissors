@@ -171,9 +171,8 @@ let keyCodes = [82, 80, 83];
             e.keyCode === 83) {
                 const pressedBtn = document.querySelector(`button[data-key="${e.keyCode}"]`);
                 playButtons.forEach((playButton) => playButton.classList.remove(`hover`));
-                pressedBtn.classList.add(`hover`);
-                pressedBtn.style.boxShadow = `0px 0px 10px 0.5px #278EA5;`; 
                 playRound(pressedBtn.getAttribute(`class`));
+                pressedBtn.classList.add(`hover`);
             }
     });
 
