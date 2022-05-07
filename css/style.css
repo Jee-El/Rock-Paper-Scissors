@@ -78,7 +78,7 @@ button.clear {
     color: #21E6C1;
 }
 
-button:hover {
+button:hover, button.hover {
     box-shadow: 0px 0px 10px 0.5px #278EA5;
 }
 
