@@ -41,7 +41,7 @@ const options = [`rock`, `paper`, `scissors`];
 let computerPlay = () => options[Math.floor(Math.random() * 3)];
 
 
-// add textual content to some elements
+// Add text to the elements
 title.textContent = `You think you can win?`;
 rockBtn.textContent = `Rock`;
 paperBtn.textContent = `Paper`;
@@ -51,7 +51,7 @@ note.textContent = `Press R on your (physical) keyboard to play Rock. 'P' & 'S' 
 footerText.textContent = `By Jee-El `;
 footerText.href = `https://github.com/Jee-El/Rock-Paper-Scissors`;
 
-// style body and icons
+// Style elements
 body.style.cssText = `position: relative;
     background-color: #071E3D;
     min-height: 100vh;
@@ -156,16 +156,16 @@ clearBtn.setAttribute(`type`, `reset`);
 clearBtn.addEventListener(`click`, restartGame);
 buttons.appendChild(clearBtn);
 
-let getPlayerSelection = (e) => {
+let getPlayerSelectionViaCLick = (e) => {
     playRound(e.target.getAttribute(`class`));
 }
-    playButtons.forEach((playButton) => playButton.addEventListener(`click`, getPlayerSelection));
+    playButtons.forEach((playButton) => playButton.addEventListener(`click`, getPlayerSelectionViaCLick));
 
 let keyCodes = [82, 80, 83];
     for (let i=0; i < keyCodes.length; i++) {
         playButtons[i].setAttribute(`data-key`, `${keyCodes[i]}`);
     }
-    document.addEventListener(`keydown`, (e) => {
+    let getPlayerSelectionViaKeys = (e) => {
         if (e.keyCode === 82 ||
             e.keyCode === 80 ||
             e.keyCode === 83) {
@@ -173,8 +173,9 @@ let keyCodes = [82, 80, 83];
                 playButtons.forEach((playButton) => playButton.classList.remove(`hover`));
                 playRound(pressedBtn.getAttribute(`class`));
                 pressedBtn.classList.add(`hover`);
-            }
-    });
+        }
+    }
+    document.addEventListener(`keydown`, getPlayerSelectionViaKeys);
 
 // show the icons of the chosen plays
 function showPlaysIcons(player = 0, computer = 0) {
@@ -268,7 +269,9 @@ function displayScore(playerScore, computerScore) {
 // check if the game ended
 function endGame() {
     if (playerScore === 5 || computerScore === 5) {
-        playButtons.forEach((playButton) => playButton.removeEventListener(`click`, getPlayerSelection));
+        playButtons.forEach((playButton) => playButton.removeEventListener(`click`, getPlayerSelectionViaCLick));
+        document.removeEventListener(`keydown`, getPlayerSelectionViaKeys);
+
         title.style.borderRadius = `4px`;
         title.style.boxShadow = `0px 0px 2px 0.5px #278EA5`;
     }
@@ -292,5 +295,6 @@ function restartGame() {
     displayScore(0, 0);
     hideNonPlaysIcons();
     showPlaysIcons();
-    playButtons.forEach((playButton) => playButton.addEventListener(`click`, getPlayerSelection));
+    playButtons.forEach((playButton) => playButton.addEventListener(`click`, getPlayerSelectionViaCLick));
+    document.addEventListener(`keydown`, getPlayerSelectionViaKeys);
 }
