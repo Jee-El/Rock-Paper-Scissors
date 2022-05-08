@@ -65,6 +65,7 @@ button {
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.08rem;
+    outline: none;
     padding: 0.5rem 1rem;
     text-align: center;
     text-transform: uppercase;
