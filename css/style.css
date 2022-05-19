@@ -1,107 +1,110 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
-html, body {
-    font-family: Poppins, Helvetica, sans-serif;
+html,
+body {
+	font-family: Poppins, Helvetica, sans-serif;
 }
 
 .main-container {
-    align-items: center;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    min-height: calc(100vh + 50.5px);
-    padding-top: 2rem;
-    padding-bottom: calc(2rem + 50.5px);
+	align-items: center;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	min-height: calc(100vh + 50.5px);
+	padding-top: 2rem;
+	padding-bottom: calc(2rem + 50.5px);
 }
 
 .result {
-    align-items: center;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    margin-bottom: 2rem;
-    width: 100%;
+	align-items: center;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	margin-bottom: 2rem;
+	width: 100%;
 }
 
-.score, h1 {
-    color: #21E6C1;
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.1rem;
-    margin-bottom: 2rem;
-    text-align: center;
+.score,
+h1 {
+	color: #21e6c1;
+	font-size: 1rem;
+	font-weight: 500;
+	letter-spacing: 0.1rem;
+	margin-bottom: 2rem;
+	text-align: center;
 }
 
 .total-plays {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    max-width: 190px;
-    width: 60%;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	max-width: 190px;
+	width: 60%;
 }
 
 .buttons {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .buttons > button:not(:last-child) {
-    margin-bottom: 2rem;
+	margin-bottom: 2rem;
 }
 
 button {
-    background-color: #21E6C1;
-    border: none;
-    border-radius: 2px;
-    box-shadow: 0px 3.7px 2px #278EA5;
-    color: #000;
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08rem;
-    outline: none;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    text-transform: uppercase;
-    transition: box-shadow 1ms ease-in-out;
-    width: 109px;
+	background-color: #21e6c1;
+	border: none;
+	border-radius: 2px;
+	box-shadow: 0px 3.7px 2px #278ea5;
+	color: #000;
+	cursor: pointer;
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.08rem;
+	outline: none;
+	padding: 0.5rem 1rem;
+	text-align: center;
+	text-transform: uppercase;
+	transition: box-shadow 1ms ease-in-out;
+	width: 109px;
 }
 
 button.clear {
-    background-color: transparent;
-    border: 2px solid #21E6C1;
-    color: #21E6C1;
+	background-color: transparent;
+	border: 2px solid #21e6c1;
+	color: #21e6c1;
 }
 
-button:hover, button.hover {
-    box-shadow: 0px 0px 10px 0.5px #278EA5;
+button:hover,
+button.hover {
+	box-shadow: 0px 0px 10px 0.5px #278ea5;
 }
 
 @media (min-width: 1100px) {
-    .main-container {
-        min-height: 100vh;
-    }
+	.main-container {
+		min-height: 100vh;
+	}
 }
 
 @media (orientation: landscape) and (max-width: 900px) {
-    .buttons {
-        flex-flow: row wrap;
-        max-width: 391px;
-    }
-    .buttons > button[type="button"] {
-        margin-bottom: 0;
-        margin-right: 2rem;
-    }
-    .buttons > button.scissors {
-        margin-right: 0;
-    }
-    .buttons > button[type="reset"] {
-        margin-top: 2rem;
-    }
+	.buttons {
+		flex-flow: row wrap;
+		max-width: 391px;
+	}
+	.buttons > button[type='button'] {
+		margin-bottom: 0;
+		margin-right: 2rem;
+	}
+	.buttons > button.scissors {
+		margin-right: 0;
+	}
+	.buttons > button[type='reset'] {
+		margin-top: 2rem;
+	}
 }
