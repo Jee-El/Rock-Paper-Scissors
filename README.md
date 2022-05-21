@@ -1,6 +1,6 @@
 # Rock-Paper-Scissors
 ## Where to play it?
-https://jee-el.github.io/Rock-Paper-Scissors/
+https://jee-el.github.io/rock-paper-scissors/
 
 ## the game's UI
 ![gameUI](./gameUI.png)
