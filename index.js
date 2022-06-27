@@ -43,7 +43,11 @@ const iconsComputer = [
 	iconScissorsComputer,
 ];
 const playButtons = [rockBtn, paperBtn, scissorsBtn];
-const keyCodes = [82, 80, 83];
+const keyCodes = {
+	82: `rock`,
+	80: `paper`,
+	83: `scissors`,
+};
 const options = [`rock`, `paper`, `scissors`];
 
 let computerPlay = () => options[Math.floor(Math.random() * 3)];
@@ -151,7 +155,6 @@ footer.appendChild(footerText);
 footerText.appendChild(githubIcon);
 playButtons.forEach((playButton) => {
 	playButton.setAttribute(`type`, `button`);
-	playButton.setAttribute(`data-key`, `${keyCodes[i++]}`);
 	buttons.appendChild(playButton);
 });
 
@@ -171,16 +174,15 @@ hideNonPlaysIcons();
 showPlaysIcons();
 
 function getPlayerInputViaClick(e) {
-	playRound(e.target.getAttribute(`class`));
+	playRound(e.target.classList[0]);
 }
 function getPlayerInputViaKeys(e) {
-	if (e.keyCode === 82 || e.keyCode === 80 || e.keyCode === 83) {
-		const pressedBtn = document.querySelector(
-			`button[data-key="${e.keyCode}"]`
-		);
+	if (e.keyCode in keyCodes) {
 		playButtons.forEach((playButton) => playButton.classList.remove(`hover`));
-		playRound(pressedBtn.getAttribute(`class`));
-		pressedBtn.classList.add(`hover`);
+		playRound(keyCodes[e.keyCode]);
+		document
+			.querySelector(`button.${keyCodes[e.keyCode]}`)
+			.classList.add(`hover`);
 	}
 }
 // show the icons of the chosen plays
